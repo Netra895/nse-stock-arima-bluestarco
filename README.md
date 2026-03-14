@@ -2,128 +2,155 @@
 
 ## Project Overview
 
-This project analyzes historical stock price data of **BLUESTARCO** from the National Stock Exchange (NSE) and applies the ARIMA time series model to forecast future closing prices.
+This project performs time series analysis and forecasting on the stock price of **BLUESTARCO**, a publicly traded company listed on the National Stock Exchange (NSE).
 
-The goal of the project is to understand stock price behavior using statistical methods and predict the possible trend for the next 30 trading days.
+The objective of this project is to analyze historical stock price data and apply the **ARIMA (AutoRegressive Integrated Moving Average)** model to predict future stock prices.
+
+The project includes data preprocessing, stationarity testing, ACF and PACF analysis, ARIMA model training, and forecasting of the next 30 days of closing prices.
 
 ---
 
 ## Dataset
 
-The dataset was obtained from the official NSE historical data portal.
+The dataset used in this project was collected from the **NSE Historical Data portal**.
 
-Stock: BLUESTARCO  
-Time Period: Last 1 year of daily closing prices
+Stock Selected: **BLUESTARCO**
 
-The dataset contains attributes such as:
+The dataset includes the following attributes:
 
 - Date
-- Open price
-- High price
-- Low price
-- Closing price
+- Open Price
+- High Price
+- Low Price
+- Close Price
 - Volume
 - Trades
 
-For this project, the **closing price** was used as the primary variable for time series forecasting.
+For time series forecasting, the **closing price** was selected as the main variable.
 
 ---
 
 ## Data Preprocessing
 
-The following preprocessing steps were performed:
+Several preprocessing steps were performed before applying the ARIMA model:
 
-- Converted the DATE column into datetime format.
-- Sorted the data chronologically.
-- Set DATE as the index for time series analysis.
-- Removed comma characters from numeric values.
-- Converted closing price values into float format.
-- Handled missing values using forward fill.
+- Converted the **DATE column** into datetime format.
+- Sorted the dataset chronologically.
+- Set the **DATE column as the index** for time series analysis.
+- Removed comma characters from numerical values.
+- Converted closing prices into **float values**.
+- Handled missing values using **forward fill**.
+
+These steps ensured that the dataset was clean and suitable for time series modeling.
 
 ---
 
 ## Stationarity Test (ADF Test)
 
-The Augmented Dickey-Fuller (ADF) test was used to determine whether the time series is stationary.
+The **Augmented Dickey-Fuller (ADF) test** was used to check whether the time series data is stationary.
 
-A stationary series is required for ARIMA modeling.
+Stationarity is important for time series models like ARIMA because the statistical properties of the series must remain constant over time.
 
-The p-value obtained from the test indicates whether differencing is required before modeling.
+If the p-value is greater than 0.05, the series is considered non-stationary and differencing is applied.
+
+### ADF Test Output
+
+![ADF Test](screenshots/adf_test.jpeg)
 
 ---
 
 ## ACF and PACF Analysis
 
-Autocorrelation Function (ACF) and Partial Autocorrelation Function (PACF) plots were used to identify the appropriate ARIMA parameters.
+To determine the appropriate ARIMA model parameters, the following plots were analyzed:
+
+- **Autocorrelation Function (ACF)**
+- **Partial Autocorrelation Function (PACF)**
 
 These plots help determine the values of:
 
-- p (autoregressive order)
-- d (degree of differencing)
-- q (moving average order)
+- **p** → autoregressive order  
+- **d** → differencing order  
+- **q** → moving average order
 
 ---
 
 ## ARIMA Model Implementation
 
-The ARIMA model was trained using the closing price time series.
+The **ARIMA model** was used to capture the time series characteristics of the stock price.
 
-Model parameters used:
+Model used in this project:
 
 ARIMA(1,1,1)
 
-The model captures both autoregressive and moving average behavior in the stock price data.
+The model was trained using historical closing price data to identify trends and dependencies in the time series.
+
+### Model Training Output
+
+![ARIMA Model](screenshots/arima_model_training.jpeg)
 
 ---
 
-## Forecasting
+## Visualization and Forecast Results
 
-The trained ARIMA model was used to forecast the **next 30 days of closing prices**.
+A dashboard-style visualization was created to display the time series analysis results.
 
-The forecast graph includes:
-
-- Historical stock prices
-- Predicted prices
-- Confidence interval for prediction uncertainty
-
----
-
-## Results and Observations
-
-The historical data shows fluctuations in the stock price over the one-year period.
-
-From the forecast results, the model suggests that the stock may continue to exhibit moderate variations in the short term.
-
-The prediction interval reflects uncertainty due to market volatility.
-
----
-
-## Visualizations
-
-The project includes a dashboard-style visualization with:
+The dashboard includes:
 
 - Closing price trend
-- Autocorrelation Function (ACF)
-- Partial Autocorrelation Function (PACF)
+- ACF plot
+- PACF plot
 - 30-day price forecast
 
-These graphs help understand the time series characteristics and future trends.
+### Forecast Dashboard
+
+![Dashboard](screenshots/dashboard_graph.png)
+
+### Forecast Graph
+
+![Forecast](screenshots/forecast.jpeg)
+
+---
+
+## Dataset Summary
+
+Statistical analysis of the dataset was performed to understand the distribution of stock prices.
+
+### Dataset Statistics
+
+![Dataset Summary](screenshots/dataset_summary.jpeg)
+
+---
+
+## Findings and Observations
+
+The historical stock data of BLUESTARCO shows several fluctuations across the one-year period.
+
+From the analysis:
+
+- The stock experienced both upward and downward movements.
+- The ADF test was used to determine the stationarity of the time series.
+- ACF and PACF plots helped identify the ARIMA parameters.
+- The ARIMA model captured the time-series pattern and produced a 30-day forecast.
+
+The forecast results suggest that the stock price may continue to fluctuate moderately in the short term. However, the confidence interval indicates the uncertainty inherent in financial time series forecasting.
 
 ---
 
 ## AI Ethics & Responsible Usage Declaration
 
-This project was developed strictly for academic and educational purposes.
+This project has been developed strictly for **academic and educational purposes**.
 
-The dataset used in this project was obtained from publicly available NSE historical stock data.
+The dataset used in this project was obtained from publicly available historical data from the **NSE website**.
 
-The predictions generated by the ARIMA model are based purely on statistical analysis and should not be interpreted as financial or investment advice.
+The predictions generated by the ARIMA model are based solely on statistical analysis of historical data and should **not be interpreted as financial or investment advice**.
 
-Any financial decisions should be made based on comprehensive market analysis and professional consultation.
+Any financial decisions should be made only after consulting qualified financial professionals and conducting detailed market analysis.
 
 ---
 
 ## Tools and Technologies
+
+The following tools and libraries were used in this project:
 
 - Python
 - Pandas
